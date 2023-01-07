@@ -6,11 +6,14 @@
 #include <string>
 using namespace std;
 
+#define min_dice_num 1
+#define dice_range 6
+#define default_balance 350
 
 class Player {
 
 private:
-	static int m_gen_serial; // uses to generate the serial number of all the players, holds an unused serial number.
+	static int m_serial_generator; // uses to generate the serial number of all the players, holds an unused serial number.
 	int m_serial; //serial number for a specific player. each player gets a different serial number 
 	string m_name;
 	int m_balance;
@@ -35,7 +38,7 @@ public:
 	Asset** get_assets();
 	int get_assets_len();
 	// setters:
-	void set_balance(int new_balance);
+	void set_balance(int new_amount);
 	void set_slot_index(int new_slot_index);
 	void set_board(Board board);
 	void set_jail_status(bool status);
