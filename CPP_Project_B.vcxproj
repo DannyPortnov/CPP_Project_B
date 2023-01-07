@@ -129,6 +129,8 @@
   <ItemGroup>
     <ClCompile Include="Asset.cpp" />
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Chance.cpp" />
+    <ClCompile Include="Jail.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Slot.cpp" />
@@ -136,6 +138,8 @@
   <ItemGroup>
     <ClInclude Include="Asset.h" />
     <ClInclude Include="Board.h" />
+    <ClInclude Include="Chance.h" />
+    <ClInclude Include="Jail.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Slot.h" />
   </ItemGroup>

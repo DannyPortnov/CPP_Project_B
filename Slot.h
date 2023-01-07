@@ -11,7 +11,7 @@ using namespace std;
 
 #define min_slot_index 1
 #define max_slot_index 18
-class Player;
+#include "Player.h"
 class Slot
 {
 public:
@@ -21,7 +21,6 @@ public:
 	virtual string get_name() const = 0;
 private:
 	int m_index;
-	static srand(time(NULL));
 };
 
 #endif
