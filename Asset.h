@@ -5,13 +5,15 @@
 using namespace std;
 
 #define min_price 50
-
+#define min_rental 5
+#define price_range 100
+#define rental_range 45
 
 class Player;
 class Asset : public Slot
 {
 public:
-	Asset(int index,const string& city, const string& asset_name, int price_for_asset, int rental);
+	Asset(int index,const string& city, const string& asset_name);
 	const string& get_city() const;
 	string get_name() const;
 	int get_price_for_asset() const;

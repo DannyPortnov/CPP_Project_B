@@ -1,8 +1,9 @@
 #include "Asset.h"
 
-Asset::Asset(int index, const string& city, const string& asset_name, int price_for_asset, int rental)
+Asset::Asset(int index, const string& city, const string& asset_name)
 	: Slot(index), m_city(city), m_asset_name(asset_name),
-	m_price_for_asset(rand() % 100 + 50), m_rental(rental), m_owner(nullptr) {}
+	m_price_for_asset(rand() % price_range + min_price),
+	m_rental(rand() % rental_range + min_rental), m_owner(nullptr) {}
 
 const string& Asset::get_city() const
 {
