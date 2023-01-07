@@ -21,7 +21,6 @@ public:
 	virtual string get_name() const = 0;
 private:
 	int m_index;
-	static srand(time(NULL));
 };
 
 #endif
