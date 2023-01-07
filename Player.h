@@ -24,6 +24,7 @@ private:
 	int m_assets_len;	// length of the assets list
 
 
+
 public:
 	Player(string name, Board board, int balance = 350);
 	~Player(); //TODO: need to implement a destructor 
