@@ -21,7 +21,8 @@ public:
 	int get_rental() const;
 	const Player* get_owner() const; //todo: check if possible to use ref here
 	void set_owner(Player*& owner); //todo: check if possible to use const Player
-	bool play(Player* p) const;
+	bool play(Player* p);
+	/*Asset& operator=(const Asset& other_asset);*/
 private:
 	string m_city;
 	string m_asset_name;
