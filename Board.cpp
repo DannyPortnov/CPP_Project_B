@@ -100,6 +100,7 @@ Board::Board()
 	srand(time(NULL));
 	m_size = 0;	
 	m_arr = nullptr;
+	m_index = 1;
 	add_go_slot("GO!");
 	add_asset_slot("Jerusalem", "zoo");
 	add_asset_slot("Jerusalem", "David_tower");
@@ -126,4 +127,10 @@ Board::Board()
 	add_asset_slot("Eilat", "Almog_beach");
 	init_board_image();
 }
+
+void add_go_slot(string text) {
+	//Slot go(index)
+}
+
+
 

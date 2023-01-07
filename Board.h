@@ -16,7 +16,7 @@ private:
 	string m_board_image[6][5];
 	int m_slot_width;	
 	void init_board_image();	
-
+	int m_index;
 public:
 	
 	Board();
