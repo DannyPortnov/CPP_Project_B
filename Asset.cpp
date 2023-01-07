@@ -34,7 +34,7 @@ const Player* Asset::get_owner() const
 	return m_owner;
 }
 
-void Asset::set_owner(Player*& owner)
+void Asset::set_owner(Player* owner)
 {
 	m_owner = owner;
 }
@@ -45,11 +45,11 @@ bool Asset::play(Player* p)
 		return p->pay_rent(m_rental);
 	}
 	char answer;
-	cout << "Do you want to buy " << m_asset_name << " for " << m_price_for_asset << " shekels?"
+	cout << "Do you want to buy " << m_asset_name << " for " << m_price_for_asset << " Dollars?"
 		<< " y/n" << endl;
 	cin >> answer;
 	if (answer == 'y') {
-		p->add_asset(*this);
+		p->add_asset(this); //todo: checl if (*this) is ok- we need to return a pointer so i changed to (this)
 	}
 }
 
