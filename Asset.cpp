@@ -29,7 +29,7 @@ int Asset::get_rental() const
 	return m_rental;
 }
 
-const Player* Asset::get_owner() const
+Player* Asset::get_owner() const
 {
 	return m_owner;
 }
