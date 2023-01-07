@@ -53,7 +53,7 @@ int Player::get_assets_len() {
 }
 
 Asset** Player::get_assets() {
-
+	return m_assets;
 
 
 	/*if (!m_assets_len) {
