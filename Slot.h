@@ -4,7 +4,9 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-
+#include <stdio.h>      /* printf, scanf, puts, NULL */
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 using namespace std;
 
 #define min_slot_index 1
@@ -19,6 +21,7 @@ public:
 	virtual string get_name() const = 0;
 private:
 	int m_index;
+	static srand(time(NULL));
 };
 
 #endif

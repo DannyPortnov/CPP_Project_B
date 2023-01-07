@@ -4,6 +4,9 @@
 #include "string"
 using namespace std;
 
+#define min_price 50
+
+
 class Player;
 class Asset : public Slot
 {
