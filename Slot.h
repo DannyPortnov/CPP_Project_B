@@ -2,11 +2,13 @@
 #define SLOT_H
 
 #include <string>
+#include <iostream>
+#include <sstream>
 
 using namespace std;
 
-#define min_slot_num 1
-#define max_slot_num 18
+#define min_slot_index 1
+#define max_slot_index 18
 class Player;
 class Slot
 {

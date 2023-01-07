@@ -24,12 +24,18 @@
     <ClCompile Include="Slot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Asset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="Slot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
