@@ -39,7 +39,7 @@ void Asset::set_owner(Player*& owner)
 	m_owner = owner;
 }
 
-bool Asset::play(Player* p) const
+bool Asset::play(Player* p)
 {
 	if (p != m_owner) {
 		return p->pay_rent(m_rental);
@@ -52,3 +52,8 @@ bool Asset::play(Player* p) const
 		p->add_asset(*this);
 	}
 }
+
+//Asset& Asset::operator=(const Asset& other_asset)
+//{
+//	Asset temp= Asset(other_asset);
+//}
