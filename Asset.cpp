@@ -5,6 +5,10 @@ Asset::Asset(int index, const string& city, const string& asset_name)
 	m_price_for_asset(rand() % price_range + min_price),
 	m_rental(rand() % rental_range + min_rental), m_owner(nullptr) {}
 
+Asset::Asset(const Asset& other_asset) : Slot(other_asset.get_index()), m_city(other_asset.get_city()), m_asset_name(other_asset.get_city()),
+m_price_for_asset(other_asset.get_price_for_asset()),
+m_rental(other_asset.get_rental()), m_owner(other_asset.get_owner()) {}
+
 const string& Asset::get_city() const
 {
 	return m_city;

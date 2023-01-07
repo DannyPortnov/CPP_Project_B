@@ -19,6 +19,7 @@ public:
 	//~Slot(); //no destructor is required in base class
 	virtual bool play(Player* p) = 0;
 	virtual string get_name() const = 0;
+	int get_index() const;
 private:
 	int m_index;
 };

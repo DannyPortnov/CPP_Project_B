@@ -10,3 +10,8 @@ Slot::Slot(int index) : m_index(index) {
 	}
 }
 
+int Slot::get_index() const
+{
+	return m_index;
+}
+
