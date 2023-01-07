@@ -36,6 +36,9 @@
     <ClCompile Include="Chance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Go.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Slot.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Chance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Go.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
