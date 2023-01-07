@@ -70,8 +70,6 @@ Asset** Player::get_assets() {
 		cout << m_name << " Has No Assets!" << endl;*/
 }
 
-
-
 void Player::set_balance(int new_balance) {
 	m_balance += new_balance;
 }

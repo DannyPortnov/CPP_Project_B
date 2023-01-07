@@ -25,7 +25,7 @@ public:
 	Player(string name, Board board, int balance = 350);
 	~Player(); //TODO: need to implement a destructor 
 	Player& initialize_m_assets();
-
+	// getters:
 	string& get_name();
 	int get_serial();
 	int get_balance();
@@ -34,8 +34,7 @@ public:
 	Board& get_board();
 	Asset** get_assets();
 	int get_assets_len();
-
-
+	// setters:
 	void set_balance(int new_balance);
 	void set_slot_index(int new_slot_index);
 	void set_board(Board board);
@@ -45,6 +44,9 @@ public:
 	void remove_asset();
 	void resize_assets_array();
 
+	bool add_asset(Asset* a);
+	bool pay_rent(int amount);
+	bool draw_dice();
 
 };
 
