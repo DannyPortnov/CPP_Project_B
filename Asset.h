@@ -8,8 +8,8 @@ using namespace std;
 #define min_rental 5
 #define price_range 100
 #define rental_range 45
+#include "Player.h"
 
-class Player;
 class Asset : public Slot
 {
 public:

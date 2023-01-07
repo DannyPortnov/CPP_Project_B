@@ -1,4 +1,5 @@
-#pragma once
+#ifndef JAIL_H
+#define JAIL_H
 #include "Slot.h"
 class Jail : public Slot
 {
@@ -9,4 +10,5 @@ public:
 	bool play(Player* p);
 	string get_name() const;
 };
+#endif
 
