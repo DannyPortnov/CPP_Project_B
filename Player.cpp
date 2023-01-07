@@ -10,6 +10,7 @@ Player::Player(string name, Board board, int balance = 350) : m_name(name), m_bo
 	initialize_m_assets();
 }
 
+
 Player& Player::initialize_m_assets() {
 	if (m_assets_len)
 		m_assets = nullptr;
@@ -96,23 +97,37 @@ void Player::set_assets_len(int new_len) {
 }
 
 
-void Player::resize_assets_array() {
-
-	Safe_Array temp(size);
-	for (int i = 0; i < size; i++) {
-		temp.m_data[i] = i < m_capacity ? m_data[i] : 0;
-	}
-	destroy_safe_array(); //deletes m_data and updates score
-	init(size, temp.m_data); //copies temp array and updates score back
-}
-
 void Player::set_asset(Asset* new_asset) {
 	m_assets_len += 1;
-
+	Asset** temp = new Asset * [m_assets_len];
+	for (int i = 0; i < m_assets_len; i++) {
+		if (i == m_assets_len - 1)
+			temp[i] = new_asset;
+		else
+			temp[i] = m_assets[i];
+		
+	}
+	delete[] m_assets;
+	Asset** m_assets = new Asset * [m_assets_len];
+	for (int i = 0; i < m_assets_len; i++) {
+		m_assets[i] = temp[i];
+	}
+	//delete[] temp; 
+	// todo: check if we need to delete temp
 }
 
 void Player::remove_asset() {
-	
-	
+	m_assets_len -= 1;
+	Asset** temp = new Asset * [m_assets_len];
+	for (int i = 0; i < m_assets_len; i++) {
+		temp[i] = m_assets[i + 1];
+	}
+	delete[] m_assets;
+	Asset** m_assets = new Asset * [m_assets_len];
+	for (int i = 0; i < m_assets_len; i++) {
+		m_assets[i] = temp[i];
+	}
+	//delete[] temp; 
+	// todo: check if we need to delete temp
 }
 
