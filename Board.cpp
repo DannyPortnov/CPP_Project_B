@@ -130,10 +130,10 @@ Board::Board()
 
 Board::~Board()
 {
-	for (int i = 0; i < max_slot_index; i++)
-	{
-		delete m_arr[i];
-	}
+	//for (int i = 0; i < max_slot_index; i++)
+	//{
+	//	delete m_arr[i];
+	//}
 	delete[] m_arr;
 }
 
@@ -145,7 +145,8 @@ Slot** Board::get_slots() const
 void Board::add_go_slot(const string& text) {
 	try
 	{
-		m_arr[m_index++] = new Go(m_index, text); //increment index after
+		m_arr[m_index-1] = new Go(m_index, text); //increment index after
+		m_index++;
 	}
 	catch (const std::exception& e)
 	{
@@ -158,7 +159,8 @@ void Board::add_asset_slot(const string& city_name, const string asset_name) {
 	try
 	{
 		//Asset test(m_index, city_name, asset_name);
-		m_arr[m_index++] = new Asset(m_index, city_name, asset_name); //increment index after
+		m_arr[m_index - 1] = new Asset(m_index, city_name, asset_name); //increment index after
+		m_index++;
 	}
 	catch (const std::exception& e)
 	{
@@ -170,7 +172,8 @@ void Board::add_asset_slot(const string& city_name, const string asset_name) {
 void Board::add_jail_slot(const string& text) {
 	try
 	{
-		m_arr[m_index++] = new Jail(m_index, text); //increment index after
+		m_arr[m_index - 1] = new Jail(m_index, text); //increment index after
+		m_index++;
 	}
 	catch (const std::exception& e)
 	{
@@ -182,7 +185,8 @@ void Board::add_jail_slot(const string& text) {
 void Board::add_chance_slot(const string& text, int sum) {
 	try
 	{
-		m_arr[m_index++] = new Chance(m_index, text, sum); //increment index after
+		m_arr[m_index - 1] = new Chance(m_index, text, sum); //increment index after
+		m_index++;
 	}
 	catch (const std::exception& e)
 	{

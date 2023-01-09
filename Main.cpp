@@ -10,9 +10,13 @@ int main()
 {
 
 	Board monopoly;	
+	Board monopoly2;	
 	cout << monopoly;
-	Player players[2] = { Player("Neta",monopoly, 350),Player("Yael",monopoly, 350) };
-	monopoly.play(players);
+	Player danny("Danny", &monopoly);
+	Player niv("niv", &monopoly);
+	Player players[2] = { Player("Danny",&monopoly),Player("Niv",&monopoly) };
+	Player players2[2] = { Player("sup",&monopoly),Player("test",&monopoly) };
+	//monopoly.play(players);
 	return 0;
 
 }

@@ -10,6 +10,11 @@ Asset::Asset(const Asset& other_asset) : Slot(other_asset.get_index()), m_city(o
 m_price_for_asset(other_asset.get_price_for_asset()),
 m_rental(other_asset.get_rental()), m_owner(other_asset.get_owner()) {}
 
+Asset::~Asset()
+{
+	delete m_owner;
+}
+
 const string& Asset::get_city() const
 {
 	return m_city;
@@ -42,16 +47,19 @@ void Asset::set_owner(Player* owner) //check if possible ref here
 
 bool Asset::play(Player* p)
 {
-	if (p != m_owner) {
+	if (p != nullptr && p != m_owner) {
 		return p->pay_rent(m_rental);
 	}
-	char answer;
-	cout << "Do you want to buy " << m_asset_name << " for " << m_price_for_asset << " Dollars?"
-		<< " y/n" << endl;
-	cin >> answer;
-	if (answer == 'y') {
-		p->add_asset(this); //todo: checl if (*this) is ok- we need to return a pointer so i changed to (this)
+	if (p == nullptr) {
+		char answer;
+		cout << "Do you want to buy " << m_asset_name << " for " << m_price_for_asset << " Dollars?"
+			<< " y/n" << endl;
+		cin >> answer;
+		if (answer == 'y') {
+			p->add_asset(this); //todo: checl if (*this) is ok- we need to return a pointer so i changed to (this)
+		}
 	}
+	return true;
 }
 
 //Asset& Asset::operator=(const Asset& other_asset)

@@ -13,9 +13,9 @@ bool Chance::play(Player* p)
 	cout << "You " << action << " Dollars!"; 
 	p->set_balance(m_sum);
 	if (p->get_balance() < 0) { //todo: change later so that set_balance returns bool maybe
-		return true;
+		return false;
 	}
-	return false;
+	return true;
 }
 
 string Chance::get_name() const

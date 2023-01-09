@@ -2,11 +2,16 @@
 
 int Player::m_serial_generator = 1; // set first serial number to 1
 
-Player::Player(string name, Board board, int balance) : m_name(name), m_board(board), m_balance(balance),
+Player::Player(string name, Board* board, int balance) : m_name(name), m_board(board), m_balance(balance),
 		m_is_in_jail(false), m_assets_len(0), m_serial(m_serial_generator), m_slot_index(min_slot_index)
 {
 	m_serial_generator++; // in order to give a new serial number to the next player
 	initialize_m_assets();
+}
+
+Player::~Player()
+{
+	delete[] m_assets;
 }
 
 
@@ -39,7 +44,7 @@ int Player::get_balance() {
 int Player::get_slot_index() {
 	return m_slot_index;
 }
-Board& Player::get_board() {
+Board*& Player::get_board() {
 	return m_board;
 }
 
@@ -60,7 +65,7 @@ void Player::set_slot_index(int new_slot_index) {
 	m_slot_index = new_slot_index;
 }
 
-void Player::set_board(Board board) {
+void Player::set_board(Board*& board) {
 	m_board = board;
 }
 
@@ -103,7 +108,7 @@ void Player::remove_asset() {
 		temp[i] = m_assets[i + 1];
 	}
 	delete[] m_assets;
-	Asset** m_assets = new Asset * [m_assets_len];
+	m_assets = new Asset * [m_assets_len];
 	for (int i = 0; i < m_assets_len; i++) {
 		m_assets[i] = temp[i];
 	}
@@ -121,7 +126,8 @@ bool Player::add_asset(Asset* a) {
 	}
 	else {
 		a->set_owner(this); // update the asset's owner
-		set_balance(a->get_price_for_asset());
+		set_balance(-a->get_price_for_asset());
+		set_asset(a);
 		cout << "Congrats! Purchase Succeeded" << endl;
 		cout << get_name() << "'s new balance is: " << get_balance() << endl;
 		return true;
@@ -140,7 +146,7 @@ bool Player::pay_rent(int amount) {
 			if (m_assets_len) {
 				cout << get_name() << "didn't have enough balance, ";
 				cout << m_assets[0]->get_name() << ", " << m_assets[0]->get_city() << " was sold.";
-				remove_asset(); // this method aslo returns the calue of the asset to the player"
+				remove_asset(); // this method also returns the value of the asset to the player"
 			}
 			else {
 				cout << get_name() << "can't afford to pay rent." << endl;
@@ -168,9 +174,11 @@ bool Player::draw_dice() {
 		set_slot_index(new_slot_index % 18);
 	}
 	else
-		set_slot_index(new_slot_index % 18);
+		set_slot_index(new_slot_index);
 
 	cout << "After rolling the dice,   " << m_name << " is in index:  " << get_slot_index() << endl;
+	cout << m_board->get_slots()[new_slot_index - 1]->get_name() << endl;
+	
 	//TODO: change the print to the name of the slot and not only the index
 
 	//TODO: call play method in the class that is relevant to the index, and return its return	

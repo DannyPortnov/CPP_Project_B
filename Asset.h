@@ -14,6 +14,7 @@ class Asset : public Slot
 public:
 	Asset(int index,const string& city, const string& asset_name);
 	Asset(const Asset& other_asset);
+	~Asset();
 	const string& get_city() const;
 	string get_name() const;
 	int get_price_for_asset() const;
