@@ -6,6 +6,7 @@
 #include "Asset.h"
 #include "Jail.h"
 #include "Chance.h"
+#include "Player.h"
 using namespace std;
 
 class Board {

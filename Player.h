@@ -1,15 +1,14 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "Board.h"
-#include "Asset.h"
 #include <string>
 using namespace std;
 
 #define min_dice_num 1
 #define dice_range 6
 #define default_balance 350
-class Player {
 
+class Player {
 private:
 	static int m_serial_generator; // uses to generate the serial number of all the players, holds an unused serial number.
 	int m_serial; //serial number for a specific player. each player gets a different serial number 
@@ -31,7 +30,7 @@ public:
 	string& get_name();
 	int get_serial();
 	int get_balance();
-	bool get_jail_status();
+	bool is_in_jail();
 	int get_slot_index();
 	Board*& get_board();
 	Asset** get_assets();

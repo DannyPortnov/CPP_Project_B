@@ -52,7 +52,7 @@ bool Asset::play(Player* p)
 	}
 	if (p == nullptr) {
 		char answer;
-		cout << "Do you want to buy " << m_asset_name << " for " << m_price_for_asset << " Dollars?"
+		cout << "Do you want to buy " << m_asset_name << ", "<< m_city << " for " << m_price_for_asset << " Dollars?"
 			<< " y/n" << endl;
 		cin >> answer;
 		if (answer == 'y') {

@@ -25,7 +25,7 @@ Player& Player::initialize_m_assets() {
 }
 
 
-bool Player::get_jail_status() {
+bool Player::is_in_jail() {
 	return m_is_in_jail;
 }
 
@@ -162,7 +162,8 @@ bool Player::pay_rent(int amount) {
 }
 
 bool Player::draw_dice() {
-	if (get_jail_status()) {
+	if (is_in_jail()) {
+		cout << "You Are In Jail!" << endl;
 		set_jail_status(false);
 		return true;
 	}
@@ -177,8 +178,10 @@ bool Player::draw_dice() {
 		set_slot_index(new_slot_index);
 
 	cout << "After rolling the dice,   " << m_name << " is in index:  " << get_slot_index() << endl;
-	cout << m_board->get_slots()[new_slot_index - 1]->get_name() << endl;
-	
+	cout << m_board->get_slots()[m_slot_index - 1]->get_name() << endl;
+
+	return m_board->get_slots()[m_slot_index - 1]->play(this);
+
 	//TODO: change the print to the name of the slot and not only the index
 
 	//TODO: call play method in the class that is relevant to the index, and return its return	
