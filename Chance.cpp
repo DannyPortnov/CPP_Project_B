@@ -5,11 +5,11 @@ m_name(name), m_sum(sum) {}
 
 bool Chance::play(Player* p)
 {
-	string action = "have to pay";
+	string action = "Have to pay";
 	if (m_sum >= 0) {
-		action = "earn";
+		action = "Won";
 	}
-	cout << "You " << action << " shekels."; 
+	cout << "You " << action << " Dollars!"; 
 	p->set_balance(m_sum);
 	if (p->get_balance() < 0) { //todo: change later so that set_balance returns bool maybe
 		return true;
