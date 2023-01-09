@@ -1,5 +1,4 @@
 #include "Board.h"
-#include "Slot.h"
 #include <time.h>
 #include <stdlib.h>
 #include <iostream>
@@ -99,7 +98,8 @@ Board::Board()
 {
 	srand(time(NULL));
 	m_size = 0;	
-	m_arr = nullptr;
+	//m_arr = nullptr; //not sure this is required
+	m_arr = new Slot * [max_slot_index]; //size 18 
 	m_index = 1;
 	add_go_slot("GO!");
 	add_asset_slot("Jerusalem", "zoo");
@@ -128,8 +128,67 @@ Board::Board()
 	init_board_image();
 }
 
-void add_go_slot(string text) {
-	//Slot go(index)
+Board::~Board()
+{
+	for (int i = 0; i < max_slot_index; i++)
+	{
+		delete m_arr[i];
+	}
+	delete[] m_arr;
+}
+
+Slot** Board::get_slots() const
+{
+	return m_arr;
+}
+
+void Board::add_go_slot(const string& text) {
+	try
+	{
+		m_arr[m_index++] = new Go(m_index, text); //increment index after
+	}
+	catch (const std::exception& e)
+	{
+		cout << "Exception: couldn't add Go slot, message:" << e.what() << endl;
+		throw;
+	}
+}
+
+void Board::add_asset_slot(const string& city_name, const string asset_name) {
+	try
+	{
+		//Asset test(m_index, city_name, asset_name);
+		m_arr[m_index++] = new Asset(m_index, city_name, asset_name); //increment index after
+	}
+	catch (const std::exception& e)
+	{
+		cout << "Exception: couldn't add Asset slot, message:" << e.what() << endl;
+		throw;
+	}
+}
+
+void Board::add_jail_slot(const string& text) {
+	try
+	{
+		m_arr[m_index++] = new Jail(m_index, text); //increment index after
+	}
+	catch (const std::exception& e)
+	{
+		cout << "Exception: couldn't add Jail slot, message:" << e.what() << endl;
+		throw;
+	}
+}
+
+void Board::add_chance_slot(const string& text, int sum) {
+	try
+	{
+		m_arr[m_index++] = new Chance(m_index, text, sum); //increment index after
+	}
+	catch (const std::exception& e)
+	{
+		cout << "Exception: couldn't add Jail slot, message:" << e.what() << endl;
+		throw;
+	}
 }
 
 

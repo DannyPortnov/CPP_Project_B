@@ -11,7 +11,8 @@ using namespace std;
 
 #define min_slot_index 1
 #define max_slot_index 18
-#include "Player.h"
+//#include "Player.h"
+class Player;
 class Slot
 {
 public:

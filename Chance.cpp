@@ -1,4 +1,5 @@
 #include "Chance.h"
+#include "Player.h"
 
 Chance::Chance(int index, const string& name, int sum) : Slot(index),
 m_name(name), m_sum(sum) {}

@@ -1,5 +1,5 @@
 #include "Board.h"
-#include "Slot.h"
+//#include "Slot.h"
 #include "Player.h"
 #include <string>
 #include <iostream>

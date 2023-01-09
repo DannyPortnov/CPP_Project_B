@@ -1,4 +1,5 @@
 #include "Asset.h"
+#include "Player.h"
 
 Asset::Asset(int index, const string& city, const string& asset_name)
 	: Slot(index), m_city(city), m_asset_name(asset_name),
@@ -34,7 +35,7 @@ Player* Asset::get_owner() const
 	return m_owner;
 }
 
-void Asset::set_owner(Player* owner)
+void Asset::set_owner(Player* owner) //check if possible ref here
 {
 	m_owner = owner;
 }

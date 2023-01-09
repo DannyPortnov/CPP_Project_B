@@ -2,9 +2,11 @@
 #define BOARD_H
 
 #include <string>
+#include "Go.h"
+#include "Asset.h"
+#include "Jail.h"
+#include "Chance.h"
 using namespace std;
-class Slot;
-class Player;
 
 class Board {
 public:
@@ -17,6 +19,10 @@ private:
 	int m_slot_width;	
 	void init_board_image();	
 	int m_index;
+	void add_go_slot(const string& text);
+	void add_asset_slot(const string& city_name, const string asset_name);
+	void add_jail_slot(const string& text);
+	void add_chance_slot(const string& text, int sum);
 public:
 	
 	Board();
@@ -24,7 +30,7 @@ public:
 	int size() const;
 	Slot* operator[](int idx) const;
 	void play(Player* players);
-	
+	Slot** get_slots() const; //todo: check if possible to add reference here and add const
 	friend ostream& operator<<(ostream& os, const Board& b);
 };
 

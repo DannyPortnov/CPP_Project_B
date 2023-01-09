@@ -4,7 +4,7 @@
 #include "Slot.h"
 class Go : public Slot
 {
-private:
+public:
 	Go(int index, const string& name);
 	bool play(Player* p);
 	string get_name() const;

@@ -1,6 +1,7 @@
 #ifndef CHANCE_H
 #define CHANCE_H
 #include "Slot.h"
+
 class Chance : public Slot
 {
 private:

@@ -1,6 +1,5 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-#include "Slot.h"
 #include "Board.h"
 #include "Asset.h"
 #include <string>
@@ -9,7 +8,7 @@ using namespace std;
 #define min_dice_num 1
 #define dice_range 6
 #define default_balance 350
-
+class Board;
 class Player {
 
 private:

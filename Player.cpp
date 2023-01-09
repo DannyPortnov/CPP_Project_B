@@ -2,7 +2,7 @@
 
 int Player::m_serial_generator = 1; // set first serial number to 1
 
-Player::Player(string name, Board board, int balance = default_balance) : m_name(name), m_board(board), m_balance(balance),
+Player::Player(string name, Board board, int balance) : m_name(name), m_board(board), m_balance(balance),
 		m_is_in_jail(false), m_assets_len(0), m_serial(m_serial_generator), m_slot_index(min_slot_index)
 {
 	m_serial_generator++; // in order to give a new serial number to the next player
@@ -34,10 +34,6 @@ int Player::get_serial() {
 
 int Player::get_balance() {
 	return m_balance;
-}
-
-bool Player::get_jail_status() {
-	return m_is_in_jail;
 }
 
 int Player::get_slot_index() {
