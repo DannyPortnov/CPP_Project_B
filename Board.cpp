@@ -137,6 +137,49 @@ Board::~Board()
 	delete[] m_arr;
 }
 
+int min(int a, int b) {
+	if (a < b)
+		return a;
+	return b;
+}
+
+void Board::play(Player* players) {
+	int sn = min(players[0].get_serial(), players[1].get_serial()); //each player's turn is determined by the serial number.
+	bool game_status = true;
+	int answer;
+	cout << "Welcome To Monopoly" << endl;
+	cout << "Let's See Who's Get To Go First..........................." << endl;
+	while (game_status) {
+		cout << players[sn].get_name() << ", It's Your Turn." << endl;
+		cout << " To continue press (1), To print board press (2), To end game press (0):" << endl;
+		cin >> answer;
+		switch (answer)
+		{
+			case(END_GAME): {
+				game_status = false;
+				break;
+			}
+			case(PLAY): {
+				game_status = players[sn].draw_dice(); // if the player is in jail, this method returns true
+				if (sn == players[0].get_serial()) // set next player's turn
+					sn = players[1].get_serial();
+				else
+					sn = players[0].get_serial();
+				break;
+			}
+			case(PRINT_BOARD): {
+				cout << *this;
+				break;
+			}
+			default: {
+				cout << "Wrong Key Was PRESSED!!! Please Try Another Time" << endl;
+			}
+		}
+	}
+}
+
+
+
 Slot** Board::get_slots() const
 {
 	return m_arr;
@@ -194,6 +237,10 @@ void Board::add_chance_slot(const string& text, int sum) {
 		throw;
 	}
 }
+
+
+
+
 
 
 
