@@ -109,7 +109,7 @@ Board::Board()
 	add_jail_slot("JAIL! Wait 1 turn");
 
 	add_asset_slot("Tel_Aviv", "Hilton");
-	int num = rand() % 1000 + 500;
+	int num = rand() % 200 + 100;
 	add_chance_slot("You won the lottery", num);
 	add_asset_slot("Tel_Aviv", "Azrieli");
 	add_asset_slot("Tel_Aviv", "Habima");
@@ -131,10 +131,10 @@ Board::Board()
 
 Board::~Board()
 {
-	//for (int i = 0; i < max_slot_index; i++)
-	//{
-	//	delete m_arr[i];
-	//}
+	for (int i = 0; i < max_slot_index; i++)
+	{
+		delete m_arr[i];
+	}
 	delete[] m_arr;
 }
 //returns an indicator for the smaller number
@@ -144,18 +144,29 @@ int check_smaller_serial(int a, int b) {
 	return 1;
 }
 
+#define DebugMode true
+
 void Board::play(Player* players) {
 	int sn = check_smaller_serial(players[0].get_serial(), players[1].get_serial()); //each player's turn is determined by the serial number.
 	bool game_status = true;
 	int answer;
 	cout << "Welcome To Monopoly" << endl;
 	cout << "Let's See Who's Get To Go First..........................." << endl;
+	cout << endl;
 	while (game_status) {
 		cout << players[sn].get_name() << ", It's Your Turn." << endl;
 		cout << "Balance: " << players[sn].get_balance() << "$" << endl;
 		cout << players[sn].get_assets() << endl;
-		cout << " To continue press (1), To print board press (2), To end game press (0):" << endl;
+		cout << endl;
+		cout << players[sn].get_name() << ", You're in (" << players[sn].get_slot_index() << ") " 
+			<< get_slots()[players[sn].get_slot_index() - 1]->get_name() << endl;
+		cout << "To continue press (1), To print board press (2), To end game press (0):" << endl;
+#if DebugMode
+		answer = PLAY;
+#else
 		cin >> answer;
+#endif // DebugMode
+
 		switch (answer)
 		{
 			case(END_GAME): {
@@ -180,6 +191,7 @@ void Board::play(Player* players) {
 		}
 
 		cout << endl;
+		cout << endl;
 	}
 }
 
@@ -189,6 +201,8 @@ Slot** Board::get_slots() const
 {
 	return m_arr;
 }
+
+
 
 void Board::add_go_slot(const string& text) {
 	try
@@ -238,7 +252,7 @@ void Board::add_chance_slot(const string& text, int sum) {
 	}
 	catch (const std::exception& e)
 	{
-		cout << "Exception: couldn't add Jail slot, message:" << e.what() << endl;
+		cout << "Exception: couldn't add Chance slot, message:" << e.what() << endl;
 		throw;
 	}
 }

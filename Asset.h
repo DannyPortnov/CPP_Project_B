@@ -5,9 +5,9 @@
 using namespace std;
 
 #define min_price 50
-#define min_rental 5
+#define min_rental 300
 #define price_range 100
-#define rental_range 45
+#define rental_range 500 //46
 //#include "Player.h"
 class Asset : public Slot
 {

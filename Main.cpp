@@ -1,3 +1,5 @@
+#define   _CRTDBG_MAP_ALLOC
+#include <crtdbg.h>
 #include "Board.h"
 //#include "Slot.h"
 #include "Player.h"
@@ -5,14 +7,23 @@
 #include <iostream>
 using namespace std;
 
+#ifdef _DEBUG
+#ifndef DBG_NEW
+#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#define new DBG_NEW
+#endif
+#endif  // _DEBUG
 
-int main()
-{
-
-	Board monopoly;	
+void run_monopoly() {
+	Board monopoly;
 	cout << monopoly;
 	Player players[2] = { Player("Danny",&monopoly),Player("Niv",&monopoly) };
 	monopoly.play(players);
-	return 0;
+}
 
+int main()
+{
+	run_monopoly();
+	cout << "Memory Leaks: " << _CrtDumpMemoryLeaks() << endl; //todo: make destructors virtual!
+	return 0;
 }

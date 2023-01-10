@@ -90,7 +90,7 @@ void Player::set_assets_len(int new_len) {
 	m_assets_len = new_len;
 }
 
-
+//todo: code reuse impromvent
 void Player::set_asset(Asset* new_asset) {
 	m_assets_len += 1;
 	//TODO: maybe set asset's owner here
@@ -106,7 +106,7 @@ void Player::set_asset(Asset* new_asset) {
 	for (int i = 0; i < m_assets_len; i++) {
 		m_assets[i] = temp[i];
 	}
-	//delete[] temp; 
+	delete[] temp; 
 	// todo: check if we need to delete temp
 }
 
@@ -123,7 +123,7 @@ void Player::remove_asset() {
 		m_assets[i] = temp[i];
 	}
 	
-	//delete[] temp; 
+	delete[] temp; 
 	// todo: check if we need to delete temp
 }
 
@@ -156,12 +156,12 @@ bool Player::pay_rent(int amount) {
 	else {
 		while (get_balance() < amount) {
 			if (m_assets_len) {
-				cout << get_name() << "didn't have enough balance, ";
-				cout << m_assets[0]->get_name() << ", " << m_assets[0]->get_city() << " was sold.";
+				cout << get_name() << " didn't have enough balance, ";
+				cout << m_assets[0]->get_name() << " was sold." <<endl;
 				remove_asset(); // this method also returns the value of the asset to the player"
 			}
 			else {
-				cout << get_name() << "can't afford to pay rent." << endl;
+				cout << get_name() << " can't afford to pay rent." << endl;
 				cout << "Game Over, " << get_name() << endl;
 				return false;
 			}
@@ -181,15 +181,15 @@ bool Player::draw_dice() {
 	}
 	int dice_result = rand() % dice_range + min_dice_num;
 	int new_slot_index = m_slot_index + dice_result;
-	cout << m_name << " was in (" << m_slot_index << ") " << m_board->get_slots()[m_slot_index - 1]->get_name() << endl;
+	
 	if (new_slot_index > max_slot_index) {
 		set_balance(default_balance);
+		cout << "Vaya Con Dios, You're New Balance Is " << get_balance() << endl;
 		set_slot_index(new_slot_index % 18);
 	}
 	else
 		set_slot_index(new_slot_index);
-
-	cout << "After rolling the dice, " << m_name << " is in index: (" << m_slot_index << ") ";
+	cout << "After rolling the dice, " << m_name << " is in: (" << m_slot_index << ") ";
 	cout << m_board->get_slots()[m_slot_index - 1]->get_name() << endl;
 
 	return m_board->get_slots()[m_slot_index - 1]->play(this);

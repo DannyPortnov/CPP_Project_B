@@ -46,6 +46,7 @@ void Asset::set_owner(Player* owner) //check if possible ref here
 {
 	m_owner = owner;
 }
+#define DebugMode true
 
 bool Asset::play(Player* p)
 {
@@ -54,10 +55,14 @@ bool Asset::play(Player* p)
 		return p->pay_rent(m_rental);
 	}
 	if (m_owner == nullptr) {
-		char answer;
-		cout << "Do you want to buy " << m_asset_name << ", "<< m_city << " for " << m_price_for_asset << " Dollars?"
+		char answer; 
+		cout << "Do you want to buy " << m_asset_name << ", "<< m_city << " for " << m_price_for_asset << "$?"
 			<< " y - yes, any other key - no" << endl;
+#if DebugMode
+		answer = 'y';
+#else
 		cin >> answer;
+#endif // DebugMode
 		if (answer == 'y') {
 			p->add_asset(this); //todo: checl if (*this) is ok- we need to return a pointer so i changed to (this)
 		}
