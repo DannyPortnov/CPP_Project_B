@@ -33,7 +33,7 @@ public:
 	bool is_in_jail();
 	int get_slot_index();
 	Board*& get_board();
-	Asset** get_assets();
+	string get_assets();
 	int get_assets_len();
 	// setters:
 	void set_balance(int new_amount);

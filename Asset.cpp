@@ -22,7 +22,9 @@ const string& Asset::get_city() const
 
 string Asset::get_name() const
 {
-	return m_asset_name;
+	stringstream ss;
+	ss << m_city << ", " << m_asset_name;
+	return ss.str();
 }
 
 int Asset::get_price_for_asset() const
@@ -47,13 +49,14 @@ void Asset::set_owner(Player* owner) //check if possible ref here
 
 bool Asset::play(Player* p)
 {
-	if (p != nullptr && p != m_owner) {
+	if (m_owner != nullptr && p != m_owner) {
+		cout << "Pay " << m_rental << "$" << " to " << m_owner->get_name() << endl;
 		return p->pay_rent(m_rental);
 	}
-	if (p == nullptr) {
+	if (m_owner == nullptr) {
 		char answer;
 		cout << "Do you want to buy " << m_asset_name << ", "<< m_city << " for " << m_price_for_asset << " Dollars?"
-			<< " y/n" << endl;
+			<< " y - yes, any other key - no" << endl;
 		cin >> answer;
 		if (answer == 'y') {
 			p->add_asset(this); //todo: checl if (*this) is ok- we need to return a pointer so i changed to (this)

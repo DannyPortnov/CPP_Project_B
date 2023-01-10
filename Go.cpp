@@ -10,5 +10,5 @@ bool Go::play(Player* p)
 
 string Go::get_name() const
 {
-    return m_name;
+    return "Go: get 350 Dollars!";
 }

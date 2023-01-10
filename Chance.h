@@ -12,6 +12,8 @@ public:
 	bool play(Player* p);
 	string get_name() const;
 };
+
+//unsigned abs(int wow);
 #endif
 
 

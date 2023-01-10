@@ -52,8 +52,18 @@ int Player::get_assets_len() {
 	return m_assets_len;
 }
 
-Asset** Player::get_assets() {
-	return m_assets;
+string Player::get_assets() {
+	stringstream ss;
+	ss << "Assets: ";
+	if (!m_assets_len) {
+		ss << " None.";
+		return ss.str();
+	}
+	for (int i = 0; i < m_assets_len; i++)
+	{
+		ss << m_assets[i]->get_name() << ", ";
+	}
+	return ss.str();
 }
 
 void Player::set_balance(int new_amount) {
@@ -129,16 +139,18 @@ bool Player::add_asset(Asset* a) {
 		set_balance(-a->get_price_for_asset());
 		set_asset(a);
 		cout << "Congrats! Purchase Succeeded" << endl;
-		cout << get_name() << "'s new balance is: " << get_balance() << endl;
+		cout << get_name() << "'s new balance is: " << get_balance() << "$" << endl;
 		return true;
 	}
 }
 
 
+
+
 bool Player::pay_rent(int amount) {
 	if (get_balance() >= amount) {
 		set_balance(-amount); // the player has to pay
-		cout << get_name() << "'s new balance is: " << get_balance() << endl;
+		cout << get_name() << "'s new balance is: " << get_balance() << "$" << endl;
 		return true;
 	}
 	else {
@@ -155,7 +167,7 @@ bool Player::pay_rent(int amount) {
 			}
 		}
 		set_balance(-amount); // the player has to pay
-		cout << get_name() << "'s new balance is: " << get_balance() << endl;
+		cout << get_name() << "'s new balance is: " << get_balance() << "$" << endl;
 		return true;
 	}
 
@@ -169,7 +181,7 @@ bool Player::draw_dice() {
 	}
 	int dice_result = rand() % dice_range + min_dice_num;
 	int new_slot_index = m_slot_index + dice_result;
-	cout << m_name << " was in index:  " << get_slot_index() << endl;
+	cout << m_name << " was in (" << m_slot_index << ") " << m_board->get_slots()[m_slot_index - 1]->get_name() << endl;
 	if (new_slot_index > max_slot_index) {
 		set_balance(default_balance);
 		set_slot_index(new_slot_index % 18);
@@ -177,7 +189,7 @@ bool Player::draw_dice() {
 	else
 		set_slot_index(new_slot_index);
 
-	cout << "After rolling the dice,   " << m_name << " is in index:  " << get_slot_index() << endl;
+	cout << "After rolling the dice, " << m_name << " is in index: (" << m_slot_index << ") ";
 	cout << m_board->get_slots()[m_slot_index - 1]->get_name() << endl;
 
 	return m_board->get_slots()[m_slot_index - 1]->play(this);

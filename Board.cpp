@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <iomanip>
+#include "Player.h"
 using namespace std;
 
 string center(int width, const string& str) {
@@ -136,21 +137,23 @@ Board::~Board()
 	//}
 	delete[] m_arr;
 }
-
-int min(int a, int b) {
+//returns an indicator for the smaller number
+int check_smaller_serial(int a, int b) {
 	if (a < b)
-		return a;
-	return b;
+		return 0;
+	return 1;
 }
 
 void Board::play(Player* players) {
-	int sn = min(players[0].get_serial(), players[1].get_serial()); //each player's turn is determined by the serial number.
+	int sn = check_smaller_serial(players[0].get_serial(), players[1].get_serial()); //each player's turn is determined by the serial number.
 	bool game_status = true;
 	int answer;
 	cout << "Welcome To Monopoly" << endl;
 	cout << "Let's See Who's Get To Go First..........................." << endl;
 	while (game_status) {
 		cout << players[sn].get_name() << ", It's Your Turn." << endl;
+		cout << "Balance: " << players[sn].get_balance() << "$" << endl;
+		cout << players[sn].get_assets() << endl;
 		cout << " To continue press (1), To print board press (2), To end game press (0):" << endl;
 		cin >> answer;
 		switch (answer)
@@ -161,10 +164,10 @@ void Board::play(Player* players) {
 			}
 			case(PLAY): {
 				game_status = players[sn].draw_dice(); // if the player is in jail, this method returns true
-				if (sn == players[0].get_serial()) // set next player's turn
-					sn = players[1].get_serial();
+				if (players[sn].get_serial() == players[0].get_serial()) // set next player's turn
+					sn = 1;
 				else
-					sn = players[0].get_serial();
+					sn = 0;
 				break;
 			}
 			case(PRINT_BOARD): {
@@ -175,6 +178,8 @@ void Board::play(Player* players) {
 				cout << "Wrong Key Was PRESSED!!! Please Try Another Time" << endl;
 			}
 		}
+
+		cout << endl;
 	}
 }
 
