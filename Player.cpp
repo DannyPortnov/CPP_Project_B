@@ -3,31 +3,28 @@
 int Player::m_serial_generator = 1; // set first serial number to 1
 
 Player::Player(string name, Board* board, int balance) : m_name(name), m_board(board), m_balance(balance),
-m_is_in_jail(false), m_assets_len(0), m_serial(m_serial_generator), m_slot_index(min_slot_index)
+m_is_in_jail(false), m_assets_len(0), m_serial(m_serial_generator), m_slot_index(min_slot_index),
+m_assets(initialize_m_assets())
 {
 	m_serial_generator++; // in order to give a new serial number to the next player
-	initialize_m_assets();
+	//initialize_m_assets();
 }
 
 Player::~Player()
 {
-	//for (int i = 0; i < m_assets_len; i++)
-	//{
-	//	delete m_assets[i];
-	//}
 	if (m_assets_len) {
 		delete[] m_assets;
 	}
 }
 
 
-Player& Player::initialize_m_assets() {
+const Asset**& Player::initialize_m_assets() {
 	if (!m_assets_len)
 		m_assets = nullptr;
 	else {
-		m_assets = new Asset * [m_assets_len];
-		return *this;
+		m_assets = new const Asset * [m_assets_len];
 	}
+	return m_assets;
 }
 
 
@@ -96,11 +93,10 @@ void Player::set_assets_len(int new_len) {
 	m_assets_len = new_len;
 }
 
-//todo: code reuse impromvent
-void Player::set_asset(Asset* new_asset) {
+void Player::set_asset(const Asset* new_asset) { //no need to use ref here
 	m_assets_len += 1;
 	//TODO: maybe set asset's owner here
-	Asset** temp = new Asset * [m_assets_len];
+	const Asset** temp = new const Asset * [m_assets_len];
 	for (int i = 0; i < m_assets_len; i++) {
 		if (i == m_assets_len - 1)
 			temp[i] = new_asset;
@@ -119,7 +115,7 @@ void Player::remove_asset() {
 		m_assets = nullptr;
 		return;
 	}
-	Asset** temp = new Asset * [m_assets_len];
+	const Asset** temp = new const Asset * [m_assets_len];
 	for (int i = 0; i < m_assets_len; i++) {
 		temp[i] = m_assets[i + 1];
 	}

@@ -17,15 +17,12 @@ private:
 	bool m_is_in_jail;
 	int m_slot_index; // index for the current player's board slot
 	Board* m_board; // the board in which a player plays					// todo: maybe switch to const
-	Asset** m_assets; // list of the player's assets
-	int m_assets_len;	// length of the assets list
-
-
-
+	int m_assets_len;	// length of the assets list MUST BE BEFORE M_ASSETS
+	const Asset** m_assets; // list of the player's assets
 public:
 	Player(string name, Board* board, int balance = 350);
 	~Player(); //TODO: need to implement a destructor 
-	Player& initialize_m_assets();
+	const Asset**& initialize_m_assets();
 	// getters:
 	string& get_name();
 	int get_serial();
@@ -41,7 +38,7 @@ public:
 	void set_board(Board*& board);
 	void set_jail_status(bool status);
 	void set_assets_len(int new_len);
-	void set_asset(Asset* new_asset);
+	void set_asset(const Asset* new_asset);
 	void remove_asset();
 	void resize_assets_array();
 
