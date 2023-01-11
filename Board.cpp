@@ -193,7 +193,7 @@ void Board::play(Player* players) { //todo: assuming exactly two players (to che
 	}
 }
 
-const Slot**& Board::get_slots() //const here?
+Slot**& Board::get_slots() //todo: is this fine? not const because is changed in play()
 {
 	return m_arr;
 }

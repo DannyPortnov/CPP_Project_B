@@ -14,7 +14,7 @@ public:
 	enum action { END_GAME, PLAY, PRINT_BOARD };
 
 private:
-	const Slot **m_arr;
+	Slot **m_arr;
 	string m_board_image[6][5];
 	int m_slot_width;	
 	void init_board_image();	
@@ -31,7 +31,8 @@ public:
 	int size() const;
 	Slot* operator[](int idx) const;
 	void play(Player* players);
-	const Slot**& get_slots() ; //todo: check if possible to add const
+
+	Slot**& get_slots(); //todo: check if possible to add const
 	friend ostream& operator<<(ostream& os, const Board& b);
 };
 
