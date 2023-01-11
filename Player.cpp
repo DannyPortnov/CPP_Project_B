@@ -2,7 +2,7 @@
 
 int Player::m_serial_generator = 1; // set first serial number to 1
 
-Player::Player(string name, Board* board, int balance) : m_name(name), m_board(board), m_balance(balance),
+Player::Player(const string& name, Board* board, int balance) : m_name(name), m_board(board), m_balance(balance),
 m_is_in_jail(false), m_assets_len(0), m_serial(m_serial_generator), m_slot_index(min_slot_index),
 m_assets(initialize_m_assets())
 {
@@ -28,34 +28,34 @@ const Asset**& Player::initialize_m_assets() {
 }
 
 
-bool Player::is_in_jail() {
+bool Player::is_in_jail() const {
 	return m_is_in_jail;
 }
 
-string& Player::get_name() {
+const string& Player::get_name() const {
 	return m_name;
 }
 
-int Player::get_serial() {
+int Player::get_serial() const {
 	return m_serial;
 }
 
-int Player::get_balance() {
+int Player::get_balance() const {
 	return m_balance;
 }
 
-int Player::get_slot_index() {
+int Player::get_slot_index() const {
 	return m_slot_index;
 }
-Board*& Player::get_board() {
+Board*& Player::get_board() { //todo: should this be const somehow?
 	return m_board;
 }
 
-int Player::get_assets_len() {
+int Player::get_assets_len() const {
 	return m_assets_len;
 }
 
-string Player::get_assets() {
+string Player::get_assets() const {
 	stringstream ss;
 	ss << "Assets: ";
 	if (!m_assets_len) {
@@ -74,22 +74,22 @@ void Player::set_balance(int new_amount) {
 }
 
 
-void Player::set_slot_index(int new_slot_index) {//
+void Player::set_slot_index(const int new_slot_index) {
 	m_slot_index = new_slot_index;
 }
 
-void Player::set_board(Board*& board) {
+void Player::set_board( Board*& board) { //todo:cannot be const here?
 	m_board = board;
 }
 
-void Player::set_jail_status(bool status) { //todo: mabye change the method implementation
+void Player::set_jail_status(const bool status) { //todo: mabye change the method implementation
 	/*if (m_slot_index == 5) {
 
 	}*/
 	m_is_in_jail = status;
 }
 
-void Player::set_assets_len(int new_len) {
+void Player::set_assets_len(const int new_len) {
 	m_assets_len = new_len;
 }
 
@@ -144,7 +144,7 @@ bool Player::add_asset(Asset* a) { //Yael defined that a has to be a pointer
 
 
 
-bool Player::pay_rent(int amount) {
+bool Player::pay_rent(int amount)  {
 	if (get_balance() >= amount) {
 		set_balance(-amount); // the player has to pay
 		cout << get_name() << "'s new balance is: " << get_balance() << "$" << endl;
