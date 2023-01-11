@@ -77,7 +77,7 @@ void Player::set_balance(int new_amount) {
 }
 
 
-void Player::set_slot_index(int new_slot_index) {
+void Player::set_slot_index(int new_slot_index) {//
 	m_slot_index = new_slot_index;
 }
 
