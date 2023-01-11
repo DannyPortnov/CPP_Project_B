@@ -146,7 +146,8 @@ int check_smaller_serial(int a, int b) {
 
 #define DebugMode true
 
-void Board::play(Player* players) {
+void Board::play(Player* players) { //todo: assuming exactly two players (to check for sure we need to pass the size)
+	//todo: do we need to check that each player belongs to this board?
 	int sn = check_smaller_serial(players[0].get_serial(), players[1].get_serial()); //each player's turn is determined by the serial number.
 	bool game_status = true;
 	int answer;
@@ -205,7 +206,7 @@ Slot** Board::get_slots() const
 
 
 void Board::add_go_slot(const string& text) {
-	try
+	try //todo: leave the try catch?
 	{
 		m_arr[m_index-1] = new Go(m_index, text); //increment index after
 		m_index++;
@@ -217,7 +218,7 @@ void Board::add_go_slot(const string& text) {
 	}
 }
 
-void Board::add_asset_slot(const string& city_name, const string asset_name) {
+void Board::add_asset_slot(const string& city_name, const string& asset_name) {
 	try
 	{
 		//Asset test(m_index, city_name, asset_name);

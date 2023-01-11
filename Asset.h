@@ -13,14 +13,14 @@ class Asset : public Slot
 {
 public:
 	Asset(int index,const string& city, const string& asset_name);
-	Asset(const Asset& other_asset);
+	/*Asset(const Asset& other_asset);*/
 	~Asset();
 	const string& get_city() const;
 	string get_name() const;
 	int get_price_for_asset() const;
 	int get_rental() const;
 	Player* get_owner() const; //todo: check if possible to use ref here
-	void set_owner(Player* owner); //todo: check if possible to use const/ref Player
+	void set_owner(Player*& owner); //todo: check if possible to use const/ref Player
 	bool play(Player* p);
 	/*Asset& operator=(const Asset& other_asset);*/
 private:

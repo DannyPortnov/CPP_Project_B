@@ -108,14 +108,7 @@ void Player::set_asset(Asset* new_asset) {
 			temp[i] = m_assets[i];
 	}
 	delete[] m_assets;
-	//m_assets = new Asset * [m_assets_len];
 	m_assets = temp;
-	//for (int i = 0; i < m_assets_len; i++) {
-	//	m_assets[i] = temp[i];
-	//}
-
-	//delete[] temp;
-	// todo: check if we need to delete temp
 }
 
 void Player::remove_asset() {
@@ -131,25 +124,19 @@ void Player::remove_asset() {
 		temp[i] = m_assets[i + 1];
 	}
 	delete[] m_assets;
-	//m_assets = new Asset * [m_assets_len];
 	m_assets = temp;
-	//for (int i = 0; i < m_assets_len; i++) {
-	//	m_assets[i] = temp[i];
-	//}
-
-	//delete[] temp;
-	// todo: check if we need to delete temp
 }
 
 
 
-bool Player::add_asset(Asset* a) {
+bool Player::add_asset(Asset* a) { //Yael defined that a has to be a pointer
 	if (a->get_price_for_asset() > get_balance()) {
 		cout << "Purchase did NOT succeed, didn't have enough balance." << endl;
 		return false;
 	}
 	else {
-		a->set_owner(this); // update the asset's owner
+		auto temporary_this = this;
+		a->set_owner(temporary_this); // we're using a reference to this
 		set_balance(-a->get_price_for_asset());
 		set_asset(a);
 		cout << "Congrats! Purchase Succeeded" << endl;
@@ -206,7 +193,7 @@ bool Player::draw_dice() {
 	cout << "After rolling the dice, " << m_name << " is in: (" << m_slot_index << ") ";
 	cout << m_board->get_slots()[m_slot_index - 1]->get_name() << endl;
 
-	return m_board->get_slots()[m_slot_index - 1]->play(this);
+	return m_board->get_slots()[m_slot_index - 1]->play(this); //has to be pointer!
 
 	//TODO: change the print to the name of the slot and not only the index
 

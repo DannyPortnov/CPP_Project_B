@@ -6,9 +6,9 @@ Asset::Asset(int index, const string& city, const string& asset_name)
 	m_price_for_asset(rand() % price_range + min_price),
 	m_rental(rand() % rental_range + min_rental), m_owner(nullptr) {}
 
-Asset::Asset(const Asset& other_asset) : Slot(other_asset.get_index()), m_city(other_asset.get_city()), m_asset_name(other_asset.get_city()),
-m_price_for_asset(other_asset.get_price_for_asset()),
-m_rental(other_asset.get_rental()), m_owner(other_asset.get_owner()) {}
+//Asset::Asset(const Asset& other_asset) : Slot(other_asset.get_index()), m_city(other_asset.get_city()), m_asset_name(other_asset.get_city()),
+//m_price_for_asset(other_asset.get_price_for_asset()),
+//m_rental(other_asset.get_rental()), m_owner(other_asset.get_owner()) {}
 
 Asset::~Asset()
 {
@@ -41,7 +41,7 @@ Player* Asset::get_owner() const
 	return m_owner;
 }
 
-void Asset::set_owner(Player* owner) //check if possible ref here
+void Asset::set_owner(Player*& owner) 
 {
 	m_owner = owner;
 }
@@ -63,7 +63,7 @@ bool Asset::play(Player* p)
 		cin >> answer;
 #endif // DebugMode
 		if (answer == 'y') {
-			p->add_asset(this); //todo: checl if (*this) is ok- we need to return a pointer so i changed to (this)
+			p->add_asset(this);
 		}
 	}
 	return true;

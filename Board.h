@@ -21,7 +21,7 @@ private:
 	void init_board_image();	
 	int m_index;
 	void add_go_slot(const string& text);
-	void add_asset_slot(const string& city_name, const string asset_name);
+	void add_asset_slot(const string& city_name, const string& asset_name);
 	void add_jail_slot(const string& text);
 	void add_chance_slot(const string& text, int sum);
 
