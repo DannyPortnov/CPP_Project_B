@@ -7,6 +7,7 @@ class Go : public Slot
 public:
 	Go(int index, const string& name);
 	bool play(Player* p);
+	~Go();
 	string get_name() const;
 private:
 	string m_name;

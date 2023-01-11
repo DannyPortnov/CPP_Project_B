@@ -3,7 +3,7 @@
 int Player::m_serial_generator = 1; // set first serial number to 1
 
 Player::Player(string name, Board* board, int balance) : m_name(name), m_board(board), m_balance(balance),
-		m_is_in_jail(false), m_assets_len(0), m_serial(m_serial_generator), m_slot_index(min_slot_index)
+m_is_in_jail(false), m_assets_len(0), m_serial(m_serial_generator), m_slot_index(min_slot_index)
 {
 	m_serial_generator++; // in order to give a new serial number to the next player
 	initialize_m_assets();
@@ -11,7 +11,13 @@ Player::Player(string name, Board* board, int balance) : m_name(name), m_board(b
 
 Player::~Player()
 {
-	delete[] m_assets;
+	//for (int i = 0; i < m_assets_len; i++)
+	//{
+	//	delete m_assets[i];
+	//}
+	if (m_assets_len) {
+		delete[] m_assets;
+	}
 }
 
 
@@ -19,7 +25,7 @@ Player& Player::initialize_m_assets() {
 	if (!m_assets_len)
 		m_assets = nullptr;
 	else {
-		m_assets = new Asset*[m_assets_len];
+		m_assets = new Asset * [m_assets_len];
 		return *this;
 	}
 }
@@ -102,11 +108,13 @@ void Player::set_asset(Asset* new_asset) {
 			temp[i] = m_assets[i];
 	}
 	delete[] m_assets;
-	m_assets = new Asset * [m_assets_len];
-	for (int i = 0; i < m_assets_len; i++) {
-		m_assets[i] = temp[i];
-	}
-	delete[] temp; 
+	//m_assets = new Asset * [m_assets_len];
+	m_assets = temp;
+	//for (int i = 0; i < m_assets_len; i++) {
+	//	m_assets[i] = temp[i];
+	//}
+
+	//delete[] temp;
 	// todo: check if we need to delete temp
 }
 
@@ -118,12 +126,13 @@ void Player::remove_asset() {
 		temp[i] = m_assets[i + 1];
 	}
 	delete[] m_assets;
-	m_assets = new Asset * [m_assets_len];
-	for (int i = 0; i < m_assets_len; i++) {
-		m_assets[i] = temp[i];
-	}
-	
-	delete[] temp; 
+	//m_assets = new Asset * [m_assets_len];
+	m_assets = temp;
+	//for (int i = 0; i < m_assets_len; i++) {
+	//	m_assets[i] = temp[i];
+	//}
+
+	//delete[] temp;
 	// todo: check if we need to delete temp
 }
 
@@ -157,7 +166,7 @@ bool Player::pay_rent(int amount) {
 		while (get_balance() < amount) {
 			if (m_assets_len) {
 				cout << get_name() << " didn't have enough balance, ";
-				cout << m_assets[0]->get_name() << " was sold." <<endl;
+				cout << m_assets[0]->get_name() << " was sold." << endl;
 				remove_asset(); // this method also returns the value of the asset to the player"
 			}
 			else {
@@ -181,7 +190,7 @@ bool Player::draw_dice() {
 	}
 	int dice_result = rand() % dice_range + min_dice_num;
 	int new_slot_index = m_slot_index + dice_result;
-	
+
 	if (new_slot_index > max_slot_index) {
 		set_balance(default_balance);
 		cout << "Vaya Con Dios, You're New Balance Is " << get_balance() << endl;
@@ -198,7 +207,7 @@ bool Player::draw_dice() {
 
 	//TODO: call play method in the class that is relevant to the index, and return its return	
 	//return m_board.slot.play()
-	
+
 
 }
 

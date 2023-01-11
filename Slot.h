@@ -17,7 +17,7 @@ class Slot
 {
 public:
 	Slot(int index);
-	//~Slot(); //no destructor is required in base class
+	virtual ~Slot(); 
 	virtual bool play(Player* p) = 0;
 	virtual string get_name() const = 0;
 	int get_index() const;

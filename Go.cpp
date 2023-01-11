@@ -8,6 +8,10 @@ bool Go::play(Player* p)
     return true;
 }
 
+Go::~Go()
+{
+}
+
 string Go::get_name() const
 {
     return "Go: get 350$!";

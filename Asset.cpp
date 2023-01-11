@@ -12,7 +12,6 @@ m_rental(other_asset.get_rental()), m_owner(other_asset.get_owner()) {}
 
 Asset::~Asset()
 {
-	delete m_owner;
 }
 
 const string& Asset::get_city() const

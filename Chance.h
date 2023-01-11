@@ -9,6 +9,7 @@ private:
 	int m_sum;
 public:
 	Chance(int index, const string& name, int sum);
+	~Chance();
 	bool play(Player* p);
 	string get_name() const;
 };

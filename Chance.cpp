@@ -5,6 +5,10 @@
 Chance::Chance(int index, const string& name, int sum) : Slot(index),
 m_name(name), m_sum(sum) {}
 
+Chance::~Chance()
+{
+}
+
 //unsigned abs(int sum) {
 //	return sum < 0 ? -sum : sum;
 //}

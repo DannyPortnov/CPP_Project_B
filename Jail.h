@@ -7,6 +7,7 @@ private:
 	string m_name;
 public:
 	Jail(int index, const string& name);
+	~Jail();
 	bool play(Player* p);
 	string get_name() const;
 };
