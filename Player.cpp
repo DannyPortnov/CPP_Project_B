@@ -119,8 +119,13 @@ void Player::set_asset(Asset* new_asset) {
 }
 
 void Player::remove_asset() {
-	m_assets_len -= 1;
 	set_balance(m_assets[0]->get_price_for_asset()); // return the asset's price (that was payed before) to the player's balance.
+	m_assets_len -= 1;
+	if (!m_assets_len) {
+		delete[] m_assets;
+		m_assets = nullptr;
+		return;
+	}
 	Asset** temp = new Asset * [m_assets_len];
 	for (int i = 0; i < m_assets_len; i++) {
 		temp[i] = m_assets[i + 1];
