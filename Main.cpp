@@ -26,7 +26,6 @@ void run_monopoly() {
 int main()
 {
 #if DebugMode
-
 	do
 	{
 		run_monopoly();

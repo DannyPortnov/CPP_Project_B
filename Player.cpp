@@ -47,6 +47,7 @@ int Player::get_balance() const {
 int Player::get_slot_index() const {
 	return m_slot_index;
 }
+
 Board*& Player::get_board() { //todo: should this be const somehow?
 	return m_board;
 }

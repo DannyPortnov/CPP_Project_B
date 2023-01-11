@@ -95,13 +95,10 @@ void Board::init_board_image()
 	m_slot_width += 2;
 }
 
-Board::Board()
+Board::Board() : m_index(1)
 {
 	srand(time(NULL));
-	m_size = 0;	
-	//m_arr = nullptr; //not sure this is required
 	m_arr = new Slot * [max_slot_index]; //size 18 
-	m_index = 1;
 	add_go_slot("GO!");
 	add_asset_slot("Jerusalem", "zoo");
 	add_asset_slot("Jerusalem", "David_tower");
@@ -196,19 +193,15 @@ void Board::play(Player* players) { //todo: assuming exactly two players (to che
 	}
 }
 
-
-
-Slot** Board::get_slots() const
+const Slot**& Board::get_slots() //const here?
 {
 	return m_arr;
 }
 
-
-
-void Board::add_go_slot(const string& text) {
+void Board::add_go_slot(const string& text)  {
 	try //todo: leave the try catch?
 	{
-		m_arr[m_index-1] = new Go(m_index, text); //increment index after
+		m_arr[m_index-1] = new Go(m_index, text);
 		m_index++;
 	}
 	catch (const std::exception& e)
@@ -222,7 +215,7 @@ void Board::add_asset_slot(const string& city_name, const string& asset_name) {
 	try
 	{
 		//Asset test(m_index, city_name, asset_name);
-		m_arr[m_index - 1] = new Asset(m_index, city_name, asset_name); //increment index after
+		m_arr[m_index - 1] = new Asset(m_index, city_name, asset_name);
 		m_index++;
 	}
 	catch (const std::exception& e)
@@ -235,7 +228,7 @@ void Board::add_asset_slot(const string& city_name, const string& asset_name) {
 void Board::add_jail_slot(const string& text) {
 	try
 	{
-		m_arr[m_index - 1] = new Jail(m_index, text); //increment index after
+		m_arr[m_index - 1] = new Jail(m_index, text); 
 		m_index++;
 	}
 	catch (const std::exception& e)
@@ -248,7 +241,7 @@ void Board::add_jail_slot(const string& text) {
 void Board::add_chance_slot(const string& text, int sum) {
 	try
 	{
-		m_arr[m_index - 1] = new Chance(m_index, text, sum); //increment index after
+		m_arr[m_index - 1] = new Chance(m_index, text, sum); 
 		m_index++;
 	}
 	catch (const std::exception& e)

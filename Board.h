@@ -14,13 +14,12 @@ public:
 	enum action { END_GAME, PLAY, PRINT_BOARD };
 
 private:
-	int m_size;
-	Slot **m_arr;
+	const Slot **m_arr;
 	string m_board_image[6][5];
 	int m_slot_width;	
 	void init_board_image();	
 	int m_index;
-	void add_go_slot(const string& text);
+	void add_go_slot(const string& text); //cannot be const because index is increased
 	void add_asset_slot(const string& city_name, const string& asset_name);
 	void add_jail_slot(const string& text);
 	void add_chance_slot(const string& text, int sum);
@@ -32,7 +31,7 @@ public:
 	int size() const;
 	Slot* operator[](int idx) const;
 	void play(Player* players);
-	Slot** get_slots() const; //todo: check if possible to add reference here and add const
+	const Slot**& get_slots() ; //todo: check if possible to add const
 	friend ostream& operator<<(ostream& os, const Board& b);
 };
 
