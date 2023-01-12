@@ -19,8 +19,8 @@ public:
 	string get_name() const; //isnt const & because of definition by Yael 
 	int get_price_for_asset() const;
 	int get_rental() const;
-	Player* get_owner() const; //todo: check if possible to use ref here
-	void set_owner(Player*& owner); //todo: check if possible to use const/ref Player
+	const Player* get_owner() const;
+	void set_owner(const Player* owner); 
 	bool play(Player* p);
 	/*Asset& operator=(const Asset& other_asset);*/
 private:
@@ -28,7 +28,7 @@ private:
 	const string m_asset_name;
 	int m_price_for_asset;
 	int m_rental;
-	Player* m_owner;
+	const Player* m_owner;
 };
 #endif
 

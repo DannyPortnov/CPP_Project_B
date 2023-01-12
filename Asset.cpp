@@ -33,18 +33,18 @@ int Asset::get_rental() const
 	return m_rental;
 }
 
-Player* Asset::get_owner() const
+const Player* Asset::get_owner() const
 {
 	return m_owner;
 }
 
-void Asset::set_owner(Player*& owner) //does Player has to be const?
+void Asset::set_owner(const Player* owner) //const pointers means the data is const, not the pointer!
 {
 	m_owner = owner;
 }
 #define DebugMode true
 
-bool Asset::play(Player* p) //by definition isn't ref. can't be const either
+bool Asset::play(Player* p) //can't be const either
 {
 	if (m_owner != nullptr && p != m_owner) {
 		cout << "Pay " << m_rental << "$" << " to " << m_owner->get_name() << endl;

@@ -143,8 +143,7 @@ int check_smaller_serial(int a, int b) {
 
 #define DebugMode true
 
-void Board::play(Player* players) { //todo: assuming exactly two players (to check for sure we need to pass the size)
-	//todo: do we need to check that each player belongs to this board?
+void Board::play(Player* players) {
 	int sn = check_smaller_serial(players[0].get_serial(), players[1].get_serial()); //each player's turn is determined by the serial number.
 	bool game_status = true;
 	int answer;
@@ -193,13 +192,13 @@ void Board::play(Player* players) { //todo: assuming exactly two players (to che
 	}
 }
 
-Slot**& Board::get_slots() //todo: is this fine? not const because is changed in play()
+Slot** Board::get_slots() const
 {
 	return m_arr;
 }
 
 void Board::add_go_slot(const string& text)  {
-	try //todo: leave the try catch?
+	try 
 	{
 		m_arr[m_index-1] = new Go(m_index, text);
 		m_index++;

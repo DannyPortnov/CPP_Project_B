@@ -16,7 +16,7 @@ private:
 	int m_balance;
 	bool m_is_in_jail;
 	int m_slot_index; // index for the current player's board slot
-	Board* m_board; // the board in which a player plays			// todo: maybe switch to const
+	const Board* m_board; // the board in which a player plays			
 	int m_assets_len;	// length of the assets list MUST BE BEFORE M_ASSETS
 	const Asset** m_assets; // list of the player's assets
 public:
@@ -29,13 +29,13 @@ public:
 	int get_balance() const;
 	bool is_in_jail() const;
 	int get_slot_index()const;
-	Board*& get_board();
+	const Board* get_board() const;
 	string get_assets()const;
 	int get_assets_len() const;
 	// setters:
 	void set_balance(const int new_amount);
 	void set_slot_index(const int new_slot_index);
-	void set_board(Board*& board);
+	void set_board(const Board*& board);
 	void set_jail_status(const bool status);
 	void set_assets_len(const int new_len);
 	void set_asset(const Asset* new_asset);

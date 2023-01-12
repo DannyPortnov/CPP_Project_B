@@ -31,8 +31,7 @@ public:
 	int size() const;
 	Slot* operator[](int idx) const;
 	void play(Player* players);
-
-	Slot**& get_slots(); //todo: check if possible to add const
+	Slot** get_slots() const; 
 	friend ostream& operator<<(ostream& os, const Board& b);
 };
 

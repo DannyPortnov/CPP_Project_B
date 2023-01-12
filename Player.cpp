@@ -48,15 +48,15 @@ int Player::get_slot_index() const {
 	return m_slot_index;
 }
 
-Board*& Player::get_board() { //todo: should this be const somehow?
+const Board* Player::get_board() const {
 	return m_board;
 }
 
 int Player::get_assets_len() const {
 	return m_assets_len;
 }
-
-string Player::get_assets() const {
+//todo: add print_assets() method
+string Player::get_assets() const { // add << for asset
 	stringstream ss;
 	ss << "Assets: ";
 	if (!m_assets_len) {
@@ -79,7 +79,7 @@ void Player::set_slot_index(const int new_slot_index) {
 	m_slot_index = new_slot_index;
 }
 
-void Player::set_board( Board*& board) { //todo:cannot be const here?
+void Player::set_board(const Board*& board) {
 	m_board = board;
 }
 
@@ -192,9 +192,7 @@ bool Player::draw_dice() {
 
 	return m_board->get_slots()[m_slot_index - 1]->play(this); //has to be pointer!
 
-	//TODO: change the print to the name of the slot and not only the index
 
-	//TODO: call play method in the class that is relevant to the index, and return its return	
 	//return m_board.slot.play()
 
 

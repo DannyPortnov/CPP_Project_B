@@ -21,7 +21,7 @@ void run_monopoly() {
 	monopoly.play(players);
 }
 
-#define DebugMode true
+#define DebugMode false
 
 int main()
 {
