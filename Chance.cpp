@@ -37,5 +37,3 @@ string Chance::get_name() const
 {
 	return "Chance";
 }
-
-

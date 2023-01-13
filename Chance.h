@@ -14,7 +14,6 @@ public:
 	string get_name() const;
 };
 
-//unsigned abs(int wow);
 #endif
 
 

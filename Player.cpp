@@ -56,19 +56,11 @@ int Player::get_assets_len() const {
 	return m_assets_len;
 }
 //todo: add print_assets() method
-string Player::get_assets() const { // add << for asset
-	stringstream ss;
-	ss << "Assets: ";
-	if (!m_assets_len) {
-		ss << " None.";
-		return ss.str();
-	}
-	for (int i = 0; i < m_assets_len; i++)
-	{
-		ss << m_assets[i]->get_name() << ", ";
-	}
-	return ss.str();
+const Asset** Player::get_assets() const { // add << for asset
+	return m_assets;
 }
+
+
 
 void Player::set_balance(int new_amount) {
 	m_balance += new_amount;
@@ -191,11 +183,21 @@ bool Player::draw_dice() {
 	cout << m_board->get_slots()[m_slot_index - 1]->get_name() << endl;
 
 	return m_board->get_slots()[m_slot_index - 1]->play(this); //has to be pointer!
+}
 
-
-	//return m_board.slot.play()
-
-
+void Player::print_assets()
+{
+	cout << "Assets: ";
+	if (!m_assets_len) {
+		cout << " None.";
+	}
+	else {
+		for (int i = 0; i < m_assets_len; i++)
+		{
+			cout << m_assets[i] << ", ";
+		}
+	}
+	cout << endl;
 }
 
 

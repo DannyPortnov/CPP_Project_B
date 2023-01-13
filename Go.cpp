@@ -16,3 +16,4 @@ string Go::get_name() const
 {
     return "Go: get 350$!";
 }
+

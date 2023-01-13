@@ -12,7 +12,7 @@ using namespace std;
 class Asset : public Slot
 {
 public:
-	Asset(int index,const string& city, const string& asset_name);
+	Asset(int index, const string& city, const string& asset_name);
 	/*Asset(const Asset& other_asset);*/
 	~Asset();
 	const string& get_city() const;
@@ -20,8 +20,9 @@ public:
 	int get_price_for_asset() const;
 	int get_rental() const;
 	const Player* get_owner() const;
-	void set_owner(const Player* owner); 
+	void set_owner(const Player* owner);
 	bool play(Player* p);
+	friend ostream& operator<<(ostream& os, const Asset* b);
 	/*Asset& operator=(const Asset& other_asset);*/
 private:
 	const string m_city;
@@ -30,5 +31,6 @@ private:
 	int m_rental;
 	const Player* m_owner;
 };
+
 #endif
 

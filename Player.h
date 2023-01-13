@@ -30,7 +30,7 @@ public:
 	bool is_in_jail() const;
 	int get_slot_index()const;
 	const Board* get_board() const;
-	string get_assets()const;
+	const Asset** get_assets()const;
 	int get_assets_len() const;
 	// setters:
 	void set_balance(const int new_amount);
@@ -45,6 +45,7 @@ public:
 	bool add_asset(Asset* a);
 	bool pay_rent(int amount);
 	bool draw_dice();
+	void print_assets();
 
 };
 

@@ -18,9 +18,7 @@ const string& Asset::get_city() const
 
 string Asset::get_name() const
 {
-	stringstream ss;
-	ss << m_city << ", " << m_asset_name;
-	return ss.str();
+	return m_asset_name;
 }
 
 int Asset::get_price_for_asset() const
@@ -51,8 +49,8 @@ bool Asset::play(Player* p) //can't be const either
 		return p->pay_rent(m_rental);
 	}
 	if (m_owner == nullptr) {
-		char answer; 
-		cout << "Do you want to buy " << m_asset_name << ", "<< m_city << " for " << m_price_for_asset << "$?"
+		char answer;
+		cout << "Do you want to buy " << m_asset_name << ", " << m_city << " for " << m_price_for_asset << "$?"
 			<< " y - yes, any other key - no" << endl;
 #if DebugMode
 		answer = 'y';
@@ -61,8 +59,8 @@ bool Asset::play(Player* p) //can't be const either
 #endif // DebugMode
 		if (answer == 'y') {
 			p->add_asset(this);
-		}
 	}
+}
 	return true;
 }
 
@@ -70,3 +68,9 @@ bool Asset::play(Player* p) //can't be const either
 //{
 //	Asset temp= Asset(other_asset);
 //}
+
+ostream& operator<<(ostream& os, const Asset* b)
+{
+	os << b->get_city() << ", " << b->get_name();
+	return os;
+}

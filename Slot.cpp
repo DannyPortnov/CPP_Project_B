@@ -18,4 +18,3 @@ int Slot::get_index() const
 {
 	return m_index;
 }
-
