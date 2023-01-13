@@ -151,7 +151,7 @@ void Board::play(Player* players) {
 	cout << "Let's See Who Gets To Go First..........................." << endl;
 	cout << endl;
 	while (game_status) {
-		cout << players[sn];
+		cout << players[sn]; //prints current player's info
 		cout << "To continue press (1), To print board press (2), To end game press (0):" << endl;
 		cin >> answer;
 		switch (answer)
@@ -161,7 +161,7 @@ void Board::play(Player* players) {
 				break;
 			}
 			case(PLAY): {
-				game_status = players[sn].draw_dice(); // if the player is in jail, this method returns true
+				game_status = players[sn].draw_dice(); 
 				if (players[sn].get_serial() == players[0].get_serial()) // set next player's turn
 					sn = 1;
 				else
