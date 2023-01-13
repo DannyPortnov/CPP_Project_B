@@ -16,7 +16,7 @@ Player::~Player()
 	}
 }
 
-
+// initialize player's assets array.
 inline const Asset**& Player::initialize_m_assets() {
 	if (!m_assets_len)
 		m_assets = nullptr;
@@ -26,60 +26,72 @@ inline const Asset**& Player::initialize_m_assets() {
 	return m_assets;
 }
 
-
+// get jail status
 inline bool Player::is_in_jail() const {
 	return m_is_in_jail;
 }
 
+//get the name of the player
 inline const string& Player::get_name() const {
 	return m_name;
 }
 
+// get the serial number of the player
 int Player::get_serial() const {
 	return m_serial;
 }
 
+// get the player's balance
 inline int Player::get_balance() const {
 	return m_balance;
 }
 
+// get player's slot index
 inline int Player::get_slot_index() const {
 	return m_slot_index;
 }
 
+// get the player's current board
 inline const Board* Player::get_board() const {
 	return m_board;
 }
 
+// get the player's num of assets
 inline int Player::get_assets_len() const {
 	return m_assets_len;
 }
 
+// get the player's array of assets 
 inline const Asset** Player::get_assets() const {
 	return m_assets;
 }
 
+// set the player's balance
 inline void Player::set_balance(int new_amount) {
 	m_balance += new_amount;
 }
 
-
+// set player's slot index
 inline void Player::set_slot_index(const int new_slot_index) {
 	m_slot_index = new_slot_index;
 }
 
+// set player's board
 inline void Player::set_board(const Board*& board) {
 	m_board = board;
 }
 
+//set jail status
 inline void Player::set_jail_status(const bool status) {
 	m_is_in_jail = status;
 }
 
+// set player's num of assets
 inline void Player::set_assets_len(const int new_len) {
 	m_assets_len = new_len;
 }
 
+// set player's asset array 
 void Player::set_asset(const Asset* new_asset) { 
 	m_assets_len += 1;
 	const Asset** temp = new const Asset * [m_assets_len];
@@ -93,6 +105,7 @@ void Player::set_asset(const Asset* new_asset) {
 	m_assets = temp;
 }
 
+// remove an from the player's assets array 
 void Player::remove_asset() {
 	set_balance(m_assets[0]->get_price_for_asset()); // return the asset's price (that was payed before) to the player's balance.
 	m_assets_len -= 1;
@@ -109,7 +122,7 @@ void Player::remove_asset() {
 	m_assets = temp;
 }
 
-
+// add an asset to the player's assets array
 bool Player::add_asset(Asset* a) {
 	if (a->get_price_for_asset() > get_balance()) {
 		cout << "Purchase did NOT succeed, didn't have enough balance." << endl;
@@ -125,11 +138,15 @@ bool Player::add_asset(Asset* a) {
 	}
 }
 
+// print player's balance
 inline void Player::print_new_balance()
 {
 	cout << get_name() << "'s new balance is: " << get_balance() << "$" << endl;
 }
 
+// the method checks if the player is able to pay rent, 
+// if yes, returns true.
+// if not returns false and the game is over.
 bool Player::pay_rent(int amount)  {
 	if (get_balance() >= amount) {
 		set_balance(-amount); // the player has to pay
@@ -137,7 +154,7 @@ bool Player::pay_rent(int amount)  {
 		return true;
 	}
 	else {
-		while (get_balance() < amount) {
+		while (get_balance() < amount) {    // if the player's doesn't have enough money, sell his assets.
 			string players_name = get_name();
 			if (m_assets_len) {
 				cout << players_name << " didn't have enough balance, ";
@@ -156,8 +173,10 @@ bool Player::pay_rent(int amount)  {
 	}
 }
 
+// method that randomly choosing the number of steps the player can move in his turn.
+// return true if in jail. if not, returns the current play method.
 bool Player::draw_dice() {
-	if (is_in_jail()) {
+	if (is_in_jail()) {		// if in jail, the player have to wait 1 turn.
 		cout << "You Are In Jail!" << endl;
 		set_jail_status(false);
 		return true;
@@ -180,6 +199,7 @@ bool Player::draw_dice() {
 	return current_slot->play(this);
 }
 
+// method that prints the player's assets
 void Player::print_assets() const
 {
 	cout << "Assets: ";
