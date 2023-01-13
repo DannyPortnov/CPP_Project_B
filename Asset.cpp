@@ -40,25 +40,26 @@ void Asset::set_owner(const Player* owner) {
 	m_owner = owner;
 }
 
+//actions performed when a player steps on an asset
 bool Asset::play(Player* p)
 {
-	if (m_owner != nullptr && p != m_owner) {
+	if (m_owner != nullptr && p != m_owner) { //if stepped on someone's assets, pay rental
 		cout << "Pay " << m_rental << "$" << " to " << m_owner->get_name() << endl;
 		return p->pay_rent(m_rental);
 	}
-	if (m_owner == nullptr) {
+	if (m_owner == nullptr) { //if nobody owns the asset, offer to buy it
 		char answer;
 		cout << "Do you want to buy " << this << " for " << m_price_for_asset << "$?"
 			<< " y - yes, any other key - no" << endl;
 		cin >> answer;
 		if (answer == 'y') {
-			p->add_asset(this);
+			p->add_asset(this); //add the asset to player's assets
 		}
 	}
 	return true;
 }
 
-
+//prints city and the asset's name (overrides derived class' <<)
 ostream& operator<<(ostream& os, const Asset* b)
 {
 	os << b->get_city() << ", " << b->get_name();

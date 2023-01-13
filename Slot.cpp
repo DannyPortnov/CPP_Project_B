@@ -19,6 +19,7 @@ inline int Slot::get_index() const
 	return m_index;
 }
 
+//for each inherited class prints the slot's name (except for Asset, which overrides it)
 ostream& operator<<(ostream& os, const Slot* s)
 {
 	os << s->get_name();
