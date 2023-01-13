@@ -9,11 +9,6 @@ Chance::~Chance()
 {
 }
 
-//unsigned abs(int sum) {
-//	return sum < 0 ? -sum : sum;
-//}
-
-
 bool Chance::play(Player* p)
 {
 	cout << m_name << endl;
@@ -23,7 +18,7 @@ bool Chance::play(Player* p)
 	}
 	cout << "You " << action << " " << abs(m_sum) << "$!" << endl;
 	p->set_balance(m_sum);
-	if (p->get_balance() < 0) { //todo: change later so that set_balance returns bool maybe
+	if (p->get_balance() < 0) { 
 		cout << p->get_name() << " can't afford to pay tax." << endl;
 		cout << "Game Over, " << p->get_name() << endl;
 		return false;

@@ -7,7 +7,6 @@ m_is_in_jail(false), m_assets_len(0), m_serial(m_serial_generator), m_slot_index
 m_assets(initialize_m_assets())
 {
 	m_serial_generator++; // in order to give a new serial number to the next player
-	//initialize_m_assets();
 }
 
 Player::~Player()
@@ -81,9 +80,8 @@ inline void Player::set_assets_len(const int new_len) {
 	m_assets_len = new_len;
 }
 
-void Player::set_asset(const Asset* new_asset) { //no need to use ref here
+void Player::set_asset(const Asset* new_asset) { 
 	m_assets_len += 1;
-	//TODO: maybe set asset's owner here
 	const Asset** temp = new const Asset * [m_assets_len];
 	for (int i = 0; i < m_assets_len; i++) {
 		if (i == m_assets_len - 1)
@@ -112,14 +110,13 @@ void Player::remove_asset() {
 }
 
 
-bool Player::add_asset(Asset* a) { //Yael defined that a has to be a pointer
+bool Player::add_asset(Asset* a) {
 	if (a->get_price_for_asset() > get_balance()) {
 		cout << "Purchase did NOT succeed, didn't have enough balance." << endl;
 		return false;
 	}
 	else {
-		auto temporary_this = this;
-		a->set_owner(temporary_this); // we're using a reference to this
+		a->set_owner(this);
 		set_balance(-a->get_price_for_asset());
 		set_asset(a);
 		cout << "Congrats! Purchase Succeeded" << endl;
@@ -180,7 +177,7 @@ bool Player::draw_dice() {
 	Slot* current_slot = m_board->get_slots()[m_slot_index - 1];
 	cout << current_slot << endl;
 
-	return current_slot->play(this); //has to be pointer!
+	return current_slot->play(this);
 }
 
 void Player::print_assets() const

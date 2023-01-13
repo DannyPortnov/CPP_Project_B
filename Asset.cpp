@@ -3,8 +3,8 @@
 
 Asset::Asset(int index, const string& city, const string& asset_name)
 	: Slot(index), m_city(city), m_asset_name(asset_name),
-	m_price_for_asset(rand() % price_range + min_price),
-	m_rental(rand() % rental_range + min_rental), m_owner(nullptr) {}
+	m_price_for_asset(rand() % price_range + min_price), //50-150 including
+	m_rental(rand() % rental_range + min_rental), m_owner(nullptr) {} //5-50 including
 
 
 Asset::~Asset()
@@ -36,13 +36,11 @@ inline const Player* Asset::get_owner() const
 	return m_owner;
 }
 
-void Asset::set_owner(const Player* owner) //const pointers means the data is const, not the pointer!
-{
+void Asset::set_owner(const Player* owner) {
 	m_owner = owner;
 }
-#define DebugMode true
 
-bool Asset::play(Player* p) //can't be const either
+bool Asset::play(Player* p)
 {
 	if (m_owner != nullptr && p != m_owner) {
 		cout << "Pay " << m_rental << "$" << " to " << m_owner->get_name() << endl;
@@ -52,22 +50,14 @@ bool Asset::play(Player* p) //can't be const either
 		char answer;
 		cout << "Do you want to buy " << this << " for " << m_price_for_asset << "$?"
 			<< " y - yes, any other key - no" << endl;
-#if DebugMode
-		answer = 'y';
-#else
 		cin >> answer;
-#endif // DebugMode
 		if (answer == 'y') {
 			p->add_asset(this);
+		}
 	}
-}
 	return true;
 }
 
-//Asset& Asset::operator=(const Asset& other_asset)
-//{
-//	Asset temp= Asset(other_asset);
-//}
 
 ostream& operator<<(ostream& os, const Asset* b)
 {

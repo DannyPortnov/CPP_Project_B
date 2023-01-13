@@ -21,20 +21,9 @@ void run_monopoly() {
 	monopoly.play(players);
 }
 
-#define DebugMode false
-
 int main()
 {
-#if DebugMode
-	do
-	{
-		run_monopoly();
-		cout << "Memory Leaks: " << _CrtDumpMemoryLeaks() << endl;
-	} while (!_CrtDumpMemoryLeaks());
-#else 
 	run_monopoly();
 	cout << "Memory Leaks: " << _CrtDumpMemoryLeaks() << endl; 
-#endif // DebugMode
-
 	return 0;
 }

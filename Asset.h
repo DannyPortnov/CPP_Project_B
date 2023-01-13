@@ -5,25 +5,22 @@
 using namespace std;
 
 #define min_price 50
-#define min_rental 300
-#define price_range 100
-#define rental_range 500 //46
-//#include "Player.h"
+#define min_rental 5
+#define price_range 101
+#define rental_range 46 
 class Asset : public Slot
 {
 public:
 	Asset(int index, const string& city, const string& asset_name);
-	/*Asset(const Asset& other_asset);*/
 	~Asset();
 	const string& get_city() const;
-	string get_name() const; //isnt const & because of definition by Yael 
+	string get_name() const; 
 	int get_price_for_asset() const;
 	int get_rental() const;
 	const Player* get_owner() const;
 	void set_owner(const Player* owner);
 	bool play(Player* p);
 	friend ostream& operator<<(ostream& os, const Asset* b);
-	/*Asset& operator=(const Asset& other_asset);*/
 private:
 	const string m_city;
 	const string m_asset_name;

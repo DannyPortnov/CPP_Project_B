@@ -11,7 +11,6 @@ using namespace std;
 
 #define min_slot_index 1
 #define max_slot_index 18
-//#include "Player.h"
 class Player;
 class Slot
 {
@@ -21,7 +20,6 @@ public:
 	virtual bool play(Player* p) = 0;
 	virtual string get_name() const = 0;
 	int get_index() const;
-	//virtual void print_slot() const = 0;
 	friend ostream& operator<<(ostream& os, const Slot* s);
 private:
 	int m_index;

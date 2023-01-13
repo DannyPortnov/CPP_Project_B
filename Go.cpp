@@ -17,8 +17,3 @@ inline string Go::get_name() const
     return "Go: get 350$!";
 }
 
-//void Go::print_slot() const
-//{
-//    cout << 
-//}
-

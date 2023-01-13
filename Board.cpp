@@ -134,6 +134,7 @@ Board::~Board()
 	}
 	delete[] m_arr;
 }
+
 //returns an indicator for the smaller number
 inline int check_smaller_serial(int a, int b) {
 	if (a < b)
@@ -141,7 +142,6 @@ inline int check_smaller_serial(int a, int b) {
 	return 1;
 }
 
-#define DebugMode true
 
 void Board::play(Player* players) {
 	int sn = check_smaller_serial(players[0].get_serial(), players[1].get_serial()); //each player's turn is determined by the serial number.
@@ -153,12 +153,7 @@ void Board::play(Player* players) {
 	while (game_status) {
 		cout << players[sn];
 		cout << "To continue press (1), To print board press (2), To end game press (0):" << endl;
-#if DebugMode
-		answer = PLAY;
-#else
 		cin >> answer;
-#endif // DebugMode
-
 		switch (answer)
 		{
 			case(END_GAME): {
@@ -208,7 +203,6 @@ inline void Board::add_go_slot(const string& text)  {
 inline void Board::add_asset_slot(const string& city_name, const string& asset_name) {
 	try
 	{
-		//Asset test(m_index, city_name, asset_name);
 		m_arr[m_index - 1] = new Asset(m_index, city_name, asset_name);
 		m_index++;
 	}

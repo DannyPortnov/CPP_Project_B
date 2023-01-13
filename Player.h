@@ -41,7 +41,6 @@ public:
 	void set_assets_len(const int new_len);
 	void set_asset(const Asset* new_asset);
 	void remove_asset();
-	//void resize_assets_array();
 
 	bool add_asset(Asset* a);
 	bool pay_rent(int amount);
