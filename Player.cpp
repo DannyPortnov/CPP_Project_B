@@ -185,7 +185,7 @@ bool Player::draw_dice() {
 	return m_board->get_slots()[m_slot_index - 1]->play(this); //has to be pointer!
 }
 
-void Player::print_assets()
+void Player::print_assets() const
 {
 	cout << "Assets: ";
 	if (!m_assets_len) {
@@ -200,6 +200,13 @@ void Player::print_assets()
 	cout << endl;
 }
 
-
-
-
+ostream& operator<<(ostream& os, const Player& p)
+{
+	os << p.get_name() << ", It's Your Turn." << endl;
+	os << "Balance: " << p.get_balance() << "$" << endl;
+	p.print_assets();
+	os << endl;
+	os << p.get_name() << ", You're in (" << p.get_slot_index() << ") "
+		<< p.m_board->get_slots()[p.get_slot_index()]->get_name() << endl;
+	return os;
+}

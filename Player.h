@@ -45,7 +45,9 @@ public:
 	bool add_asset(Asset* a);
 	bool pay_rent(int amount);
 	bool draw_dice();
-	void print_assets();
+	void print_assets() const;
+
+	friend ostream& operator<<(ostream& os, const Player& p);
 
 };
 

@@ -151,12 +151,7 @@ void Board::play(Player* players) {
 	cout << "Let's See Who Gets To Go First..........................." << endl;
 	cout << endl;
 	while (game_status) {
-		cout << players[sn].get_name() << ", It's Your Turn." << endl;
-		cout << "Balance: " << players[sn].get_balance() << "$" << endl;
-		players[sn].print_assets();
-		cout << endl;
-		cout << players[sn].get_name() << ", You're in (" << players[sn].get_slot_index() << ") " 
-			<< get_slots()[players[sn].get_slot_index() - 1]->get_name() << endl;
+		cout << players[sn];
 		cout << "To continue press (1), To print board press (2), To end game press (0):" << endl;
 #if DebugMode
 		answer = PLAY;
