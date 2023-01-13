@@ -9,6 +9,7 @@ public:
 	bool play(Player* p);
 	~Go();
 	string get_name() const;
+	//void print_slot() const;
 private:
 	string m_name;
 };

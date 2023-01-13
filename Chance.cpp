@@ -33,7 +33,7 @@ bool Chance::play(Player* p)
 }
 
 
-string Chance::get_name() const
+inline string Chance::get_name() const
 {
 	return "Chance";
 }

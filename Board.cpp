@@ -135,7 +135,7 @@ Board::~Board()
 	delete[] m_arr;
 }
 //returns an indicator for the smaller number
-int check_smaller_serial(int a, int b) {
+inline int check_smaller_serial(int a, int b) {
 	if (a < b)
 		return 0;
 	return 1;
@@ -192,7 +192,7 @@ Slot** Board::get_slots() const
 	return m_arr;
 }
 
-void Board::add_go_slot(const string& text)  {
+inline void Board::add_go_slot(const string& text)  {
 	try 
 	{
 		m_arr[m_index-1] = new Go(m_index, text);
@@ -205,7 +205,7 @@ void Board::add_go_slot(const string& text)  {
 	}
 }
 
-void Board::add_asset_slot(const string& city_name, const string& asset_name) {
+inline void Board::add_asset_slot(const string& city_name, const string& asset_name) {
 	try
 	{
 		//Asset test(m_index, city_name, asset_name);
@@ -219,7 +219,7 @@ void Board::add_asset_slot(const string& city_name, const string& asset_name) {
 	}
 }
 
-void Board::add_jail_slot(const string& text) {
+inline void Board::add_jail_slot(const string& text) {
 	try
 	{
 		m_arr[m_index - 1] = new Jail(m_index, text); 
@@ -232,7 +232,7 @@ void Board::add_jail_slot(const string& text) {
 	}
 }
 
-void Board::add_chance_slot(const string& text, int sum) {
+inline void Board::add_chance_slot(const string& text, int sum) {
 	try
 	{
 		m_arr[m_index - 1] = new Chance(m_index, text, sum); 

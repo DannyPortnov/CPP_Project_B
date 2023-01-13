@@ -14,7 +14,13 @@ Slot::~Slot()
 {
 }
 
-int Slot::get_index() const
+inline int Slot::get_index() const
 {
 	return m_index;
+}
+
+ostream& operator<<(ostream& os, const Slot* s)
+{
+	os << s->get_name();
+	return os;
 }

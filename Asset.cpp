@@ -11,12 +11,12 @@ Asset::~Asset()
 {
 }
 
-const string& Asset::get_city() const
+inline const string& Asset::get_city() const
 {
 	return m_city;
 }
 
-string Asset::get_name() const
+inline string Asset::get_name() const
 {
 	return m_asset_name;
 }
@@ -26,12 +26,12 @@ int Asset::get_price_for_asset() const
 	return m_price_for_asset;
 }
 
-int Asset::get_rental() const
+inline int Asset::get_rental() const
 {
 	return m_rental;
 }
 
-const Player* Asset::get_owner() const
+inline const Player* Asset::get_owner() const
 {
 	return m_owner;
 }
@@ -50,7 +50,7 @@ bool Asset::play(Player* p) //can't be const either
 	}
 	if (m_owner == nullptr) {
 		char answer;
-		cout << "Do you want to buy " << m_asset_name << ", " << m_city << " for " << m_price_for_asset << "$?"
+		cout << "Do you want to buy " << this << " for " << m_price_for_asset << "$?"
 			<< " y - yes, any other key - no" << endl;
 #if DebugMode
 		answer = 'y';

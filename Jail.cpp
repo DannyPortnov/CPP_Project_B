@@ -6,13 +6,13 @@ Jail::~Jail()
 {
 }
 
-bool Jail::play(Player* p)
+inline bool Jail::play(Player* p)
 {
 	cout << m_name << endl;
 	return true;
 }
 
-string Jail::get_name() const
+inline string Jail::get_name() const
 {
 	return "Jail";
 }

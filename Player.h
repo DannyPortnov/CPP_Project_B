@@ -19,6 +19,7 @@ private:
 	const Board* m_board; // the board in which a player plays			
 	int m_assets_len;	// length of the assets list MUST BE BEFORE M_ASSETS
 	const Asset** m_assets; // list of the player's assets
+	void print_new_balance();
 public:
 	Player(const string& name, Board* board, int balance = 350);
 	~Player();
